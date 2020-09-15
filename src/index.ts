@@ -252,7 +252,7 @@ export const createProductFullName = ({
   }
 
   if (weight) {
-    baseString = `${baseString} ${weight}${weightUnit}`;
+    baseString = `${baseString} ${weight}${weightUnit}.`;
   }
 
   if (dimensions) {
