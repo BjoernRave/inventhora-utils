@@ -177,7 +177,8 @@ export const getSubdomain = (url: string) => {
   return url.split('.')[0];
 };
 
-export const parseNumber = (number: string | number) => {
+export const parseNumber = (number: any) => {
+  if (number === null || number === undefined || number === '') return null;
   if (typeof number === 'number') return number;
   return Number(number.replace(',', '.'));
 };
