@@ -63,7 +63,7 @@ export const getErrorMessage = (error: any): string => {
 };
 
 export const cleanObject = <T>(object: T): T => {
-  const newObject = {} as any;
+  const newObject = {} as T;
 
   Object.keys(object).map(entry => {
     if (
