@@ -163,7 +163,7 @@ export const getSubdomain = (url: string) => {
     url === 'inventhora.com' ||
     (url.indexOf('localhost') === 0 && url.indexOf('inventhora') === -1)
   ) {
-    return 'dev';
+    return process.env.DEFAULT_SUBDOMAIN;
   }
 
   const currentBranch = process.env.VERCEL_GITHUB_COMMIT_REF?.toLowerCase()
