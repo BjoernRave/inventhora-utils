@@ -97,15 +97,27 @@ export const getBannerMessage = (settings: Partial<any>): TopBannerMessages => {
   return null;
 };
 
-export const generateRandomString = (length: number) => {
+export const generateRandomString = ({
+  length,
+  withSymbols = false,
+  withNumbers = true,
+}: {
+  length: number;
+  withSymbols?: boolean;
+  withNumbers?: boolean;
+}) => {
   let result = '';
   const specials = '!@#$%^&*';
   const numbers = '0123456789';
   const smallChars = 'abcdefghijklmnopqrstuvwxyz';
   const bigChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
   for (let i = 0; i < length / 4; i++) {
-    result += specials.charAt(Math.floor(Math.random() * specials.length));
-    result += numbers.charAt(Math.floor(Math.random() * numbers.length));
+    if (withSymbols) {
+      result += specials.charAt(Math.floor(Math.random() * specials.length));
+    }
+    if (withNumbers) {
+      result += numbers.charAt(Math.floor(Math.random() * numbers.length));
+    }
     result += smallChars.charAt(Math.floor(Math.random() * smallChars.length));
     result += bigChars.charAt(Math.floor(Math.random() * bigChars.length));
   }
