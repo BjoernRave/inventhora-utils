@@ -171,19 +171,16 @@ export const generateSlug = (text: string) =>
     .replace(/--+/g, '-');
 
 export const getSubdomain = (url: string) => {
-  if (
-    url === 'inventhora.com' ||
-    (url.indexOf('localhost') === 0 && url.indexOf('inventhora') === -1)
-  ) {
-    return process.env.DEFAULT_SUBDOMAIN;
-  }
-
   const currentBranch = process.env.VERCEL_GITHUB_COMMIT_REF?.toLowerCase()
     ?.replace('/', '-')
     ?.replace('_', '-');
 
-  if (currentBranch !== 'master') {
-    return 'testing';
+  if (
+    url === 'inventhora.com' ||
+    (url.indexOf('localhost') === 0 && url.indexOf('inventhora') === -1) ||
+    currentBranch !== 'master'
+  ) {
+    return process.env.DEFAULT_SUBDOMAIN;
   }
 
   return url.split('.')[0];
