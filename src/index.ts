@@ -249,6 +249,8 @@ export const createProductFullName = ({
   lengthUnit: string;
   t: any;
 }) => {
+  if (!product) return null;
+
   const { name, material, color, weight, dimensions, quantity } = product;
 
   let baseString = name;
