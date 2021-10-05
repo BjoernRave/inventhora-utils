@@ -249,7 +249,7 @@ export const isMobile = (ctx: any) => {
 };
 
 export const combineFirstLastName = (entity: any) => {
-  if (!entity.firstName) return null;
+  if (!entity?.firstName) return null;
 
   if (entity.lastName) return `${entity.firstName} ${entity.lastName}`;
 
