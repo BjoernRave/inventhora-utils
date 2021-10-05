@@ -238,51 +238,6 @@ export const constructDimensionString = (
   return `${dimensions.height}x${dimensions.width}x${dimensions.depth}${lengthUnit}.`;
 };
 
-export const createProductFullName = ({
-  product,
-  weightUnit,
-  lengthUnit,
-  t,
-}: {
-  product: Partial<{ dimensions: any } & any>;
-  weightUnit: string;
-  lengthUnit: string;
-  t: any;
-}) => {
-  if (!product) return null;
-
-  const { name, material, color, weight, dimensions, quantity } = product;
-
-  let baseString = name;
-
-  if (material) {
-    baseString = `${baseString} ${material}`;
-  }
-
-  if (color) {
-    baseString = `${baseString} ${color}`;
-  }
-
-  if (weight) {
-    baseString = `${baseString} ${weight}${weightUnit}.`;
-  }
-
-  if (dimensions) {
-    baseString = `${baseString} ${constructDimensionString(
-      dimensions,
-      lengthUnit
-    )}`;
-  }
-
-  if (quantity) {
-    baseString = `${baseString} ${quantity}${t('common:pieces', {
-      count: quantity,
-    })}`;
-  }
-
-  return baseString;
-};
-
 export const isMobile = (ctx: any) => {
   const uaParser = new UAParser(
     ctx.req ? ctx.req.headers['user-agent'] : navigator.userAgent
@@ -291,4 +246,12 @@ export const isMobile = (ctx: any) => {
   const device = uaParser.getDevice().type;
 
   return device === 'mobile' || device === 'tablet';
+};
+
+export const combineFirstLastName = (entity: any) => {
+  if (!entity.firstName) return null;
+
+  if (entity.lastName) return `${entity.firstName} ${entity.lastName}`;
+
+  return entity.firstName;
 };
